@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <locale.h>
-#define TAM 200
+#define TAM 50
 
 struct dados
 {
@@ -9,10 +9,10 @@ struct dados
     int ano;
     int status;
     int prazo;
-    char titulo[60];
-    char descricao[60];
-    char gerente[60];
-    char cliente[60];
+    char titulo[100];
+    char descricao[100];
+    char gerente[100];
+    char cliente[100];
     float valor;
 };
 int op, i, escolha;
@@ -23,7 +23,7 @@ int main(){
     retorno:
         menu();
 
-        do{printf("\n\n*Escolha uma opÁ„o: ");
+        do{printf("\n\n*Escolha uma op√ß√£o: ");
                 scanf("%i", &op);
           }while (op > 7);
     switch (op){
@@ -64,7 +64,7 @@ int main(){
         break;
 
     default:
-        printf("\nEscolha uma opÁ„o v·lida:\n");
+        printf("\nEscolha uma op√ß√£o v√°lida:\n");
         goto retorno;
         break;
     }return(0);
@@ -75,7 +75,7 @@ void menu(){
         printf("\n2 - Listar Todos os Projetos.");
         printf("\n3 - Listar Todos os Projetos com Status - A Fazer.");
         printf("\n4 - Listar Todos os Projetos com Status - Fazendo.");
-        printf("\n5 - Listar Todos os Projetos com Status - ConcluÌdo.");
+        printf("\n5 - Listar Todos os Projetos com Status - Conclu√≠do.");
         printf("\n6 - Listar Todos os Projetos com Status - A Fazer e Todos os Projetos com Status - Fazendo.");
         printf("\n7 - Sair");
         printf("\n\n********************************************************************************************\n");
@@ -84,22 +84,22 @@ void menu(){
 void cadastro(){
     system("cls");
     for (i=0; i<TAM; i++){
-    printf("\n** DADOS DO PROJETO ** CÛdigo projeto: %d", i+1);
+    printf("\n** DADOS DO PROJETO ** C√≥digo projeto: %d", i+1);
     projeto[i].codigo = i+1;
     fflush(stdin);
-    printf("\nTÌtulo do Projeto: ");
+    printf("\nT√≠tulo do Projeto: ");
     scanf("%100[^\n]s", &projeto[i].titulo);
     fflush(stdin);
-    printf("\nStatus do Projeto: [1]A Fazer  [2]Fazendo  [3]ConcluÌdo: ");
+    printf("\nStatus do Projeto: [1]A Fazer  [2]Fazendo  [3]Conclu√≠do: ");
     scanf("%d", &projeto[i].status);
     fflush(stdin);
-    printf("\nBreve DescriÁ„o do Projeto: ");
+    printf("\nBreve Descri√ß√£o do Projeto: ");
     scanf("%100[^\n]s", &projeto[i].descricao);
     fflush(stdin);
-    printf("\nAno de InÌcio do Projeto: ");
+    printf("\nAno de In√≠cio do Projeto: ");
     scanf("%d", &projeto[i].ano);
     fflush(stdin);
-    printf("\nPrazo em Meses para Conclus„o: ");
+    printf("\nPrazo em Meses para Conclus√£o: ");
     scanf("%d", &projeto[i].prazo);
     fflush(stdin);
     printf("\nGerente do Projeto: ");
@@ -112,7 +112,7 @@ void cadastro(){
     scanf("%f", &projeto[i].valor);
     fflush(stdin);
     do{
-        printf("\nDeseja cadastrar outro projeto? [1]Sim  [2]N„o\n");
+        printf("\nDeseja cadastrar outro projeto? [1]Sim  [2]N√£o\n");
         scanf("%d", &escolha);
         fflush(stdin);
 
@@ -129,11 +129,11 @@ void cadastro(){
         }
     }
 void imprimir(){
-    printf("\nTÌtulo do Projeto: %s", projeto[i].titulo);
-    printf("\nStatus do Projeto: [1]A Fazer  [2]Fazendo  [3]ConcluÌdo: %d", projeto[i].status);
-    printf("\nBreve DescriÁ„o do Projeto: %s", projeto[i].descricao);
-    printf("\nAno de InÌcio do Projeto: %d", projeto[i].ano);
-    printf("\nPrazo em Meses para Conclus„o Total: %d", projeto[i].prazo);
+    printf("\nT√≠tulo do Projeto: %s", projeto[i].titulo);
+    printf("\nStatus do Projeto: [1]A Fazer  [2]Fazendo  [3]Conclu√≠do: %d", projeto[i].status);
+    printf("\nBreve Descri√ß√£o do Projeto: %s", projeto[i].descricao);
+    printf("\nAno de In√≠cio do Projeto: %d", projeto[i].ano);
+    printf("\nPrazo em Meses para Conclus√£o Total: %d", projeto[i].prazo);
     printf("\nGerente do Projeto: %s", projeto[i].gerente);
     printf("\nCliente do Projeto: %s", projeto[i].cliente);
     printf("\nValor do Projeto: R$%.2f", projeto[i].valor);
@@ -145,7 +145,7 @@ void listar_Todos(){
     printf("\n* Listar Todos os Projetos: \n");
         for (i=0; i<TAM; i++){
             if((projeto[i].status > 0) && (projeto[i].status <= 3)){
-                    printf("\nCÛdigo %d", projeto[i].codigo);
+                    printf("\nC√≥digo %d", projeto[i].codigo);
                     imprimir(listar_Todos);
             }
         }
@@ -170,7 +170,7 @@ void fazendo(){
 }
 void concluido(){
     system("cls");
-    printf("\nListar Todos os Projetos com Status - ConcluÌdo: \n");
+    printf("\nListar Todos os Projetos com Status - Conclu√≠do: \n");
         for (i=0; i<TAM; i++){
             if((projeto[i].status > 2) && (projeto[i].status <= 3)){
                     imprimir(concluido);
